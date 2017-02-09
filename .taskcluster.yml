@@ -1,0 +1,21 @@
+version: 0
+metadata:
+  name: TC-Github Testing
+  description: Used to support `npm run checkStaging`
+  owner: '{{ event.head.user.email }}'
+  source: '{{ event.head.repo.url }}'
+tasks:
+  - provisionerId: '{{ taskcluster.docker.provisionerId }}'
+    workerType: '{{ taskcluster.docker.workerType }}'
+    extra:
+      github:
+        events:
+          - push
+    payload:
+      command: ['echo', 'hello, world']
+      image: 'busybox'
+    metadata:
+      name: dummy
+      description: dummy task to validate tc-github staging
+      owner: '{{ event.head.user.email }}'
+      source: '{{ event.head.repo.url }}'
