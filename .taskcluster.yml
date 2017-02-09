@@ -14,6 +14,7 @@ tasks:
     payload:
       command: ['echo', 'hello, world']
       image: 'busybox'
+      maxRunTime: 60
     metadata:
       name: dummy
       description: dummy task to validate tc-github staging
