@@ -16,7 +16,7 @@ tasks:
       command:
         - bin/sh
         - -lc
-        - "$GITHUB_HEAD_REF in refs/tags/*) && echo 'hi!'"
+        - case $GITHUB_HEAD_REF in; refs/tags/*) echo 'hi!'; esac
       image: 'busybox'
       maxRunTime: 60
     metadata:
