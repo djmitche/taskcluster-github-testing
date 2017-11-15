@@ -14,9 +14,8 @@ tasks:
           - push
     payload:
       command:
-        - bin/sh
-        - -lc
-        - case $GITHUB_HEAD_REF in; refs/tags/*) echo 'hi!'; esac
+        - echo
+        - "case $GITHUB_HEAD_REF in; refs/tags/*) echo 'hi!'; esac"
       image: 'busybox'
       maxRunTime: 60
     metadata:
