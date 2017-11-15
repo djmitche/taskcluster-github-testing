@@ -13,7 +13,8 @@ tasks:
         events:
           - push
     payload:
-      command: ['echo', 'hello, world']
+      command:
+        - case $GITHUB_HEAD_REF in 'refs/tags/*'; echo 'hi!'; esac
       image: 'busybox'
       maxRunTime: 60
     metadata:
