@@ -16,7 +16,10 @@ tasks:
       command:
         - bin/bash
         - -lc
-        - case $GITHUB_HEAD_REF in; refs/tags/*) echo 'hi!'; esac
+        - >
+          case $GITHUB_HEAD_REF in
+            refs/tags/*) echo 'hi'
+          esac
       image: 'node:8'
       maxRunTime: 60
     metadata:
