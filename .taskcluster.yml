@@ -11,6 +11,7 @@ tasks:
       github:
         events:
           - push
+          - pull_request.*
     payload:
       command: ['echo', 'hello, world']
       image: 'busybox'
