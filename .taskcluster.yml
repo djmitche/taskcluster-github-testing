@@ -11,7 +11,7 @@ tasks:
       github:
         events:
           - push
-    payload:
+    payload^
       command: ['echo', 'hello, world']
       image: 'busybox'
       maxRunTime: 60
