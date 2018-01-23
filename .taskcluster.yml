@@ -1,7 +1,7 @@
 version: 0
 metadata:
   name: TC-Github Testing
-  description: Used to support `npm run checkStaging`
+  description: Used to support `yarn checkStaging`
   owner: '{{ event.head.user.email }}'
   source: '{{ event.head.repo.url }}'
 tasks:
