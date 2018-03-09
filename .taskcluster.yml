@@ -11,6 +11,8 @@ tasks:
       github:
         events:
           - push
+        excludeBranches:
+          - something-never-pushed-to
     payload:
       command: ['echo', 'hello, world']
       image: 'busybox'
