@@ -5,8 +5,8 @@ metadata:
   owner: '{{ event.head.user.email }}'
   source: '{{ event.head.repo.url }}'
 tasks:
-  - provisionerId: '{{ taskcluster.docker.provisionerId }}'
-    workerType: '{{ taskcluster.docker.workerType }}'
+  - provisionerId: 'gce-provider'
+    workerType: 'gce-worker-test'
     extra:
       github:
         events:
@@ -14,8 +14,7 @@ tasks:
         excludeBranches:
           - something-never-pushed-to
     payload:
-      command: ['echo', 'hello, world']
-      image: 'busybox'
+      command: [['echo', 'hello, world']]
       maxRunTime: 60
     metadata:
       name: dummy
