@@ -2,12 +2,13 @@ version: 1
 tasks:
   - provisionerId: aws-provisioner-v1
     workerType: github-worker
-    extra:
-      github:
-        events:
-          - pull_request.opened
-          - pull_request.reopened
-          - pull_request.synchronize
+    $match:
+      'tasks_for == "github-pull-request" && event["action"] in ["opened", "reopened", "synchronize"]':
+        taskId: {$eval: as_slugid("pr_task")}
+        provisionerId: aws-provisioner-v1
+        workerType: github-worker
+        scopes:
+          - secrets:get:project/taskcluster/testing/taskcluster-github
     payload:
       maxRunTime: 3600
       image: node
@@ -16,12 +17,13 @@ tasks:
         - '--login'
         - '-c'
         - >-
-          git clone {{event.head.repo.url}} repo && cd repo && git config
-          advice.detachedHead false && git checkout {{event.head.sha}} && npm
+          git clone {{event.pull_request.head.ref}} repo && cd repo && git config
+          advice.detachedHead false && git checkout {{event.pull_request.head.sha}} && npm
           install . && npm test
     metadata:
       name: ''
       description: ''
-      owner: '{{ event.head.user.email }}'
-      source: '{{ event.head.repo.url }}'
-access: collaborators
+      owner: '${event.pusher.name}@users.noreply.github.com'
+      source: ${event.repository.url}
+policy:
+  pullRequests: public
