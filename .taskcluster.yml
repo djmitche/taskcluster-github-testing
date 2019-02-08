@@ -1,24 +1,27 @@
-version: 0
-metadata:
-  name: TC-Github Testing
-  description: Used to support `npm run checkStaging`
-  owner: '{{ event.head.user.email }}'
-  source: '{{ event.head.repo.url }}'
+version: 1
 tasks:
-  - provisionerId: '{{ taskcluster.docker.provisionerId }}'
-    workerType: '{{ taskcluster.docker.workerType }}'
+  - provisionerId: aws-provisioner-v1
+    workerType: github-worker
     extra:
       github:
         events:
-          - push
-        excludeBranches:
-          - something-never-pushed-to
+          - pull_request.opened
+          - pull_request.reopened
+          - pull_request.synchronize
     payload:
-      command: ['echo', 'hello, world']
-      image: 'busybox'
-      maxRunTime: 60
+      maxRunTime: 3600
+      image: node
+      command:
+        - /bin/bash
+        - '--login'
+        - '-c'
+        - >-
+          git clone {{event.head.repo.url}} repo && cd repo && git config
+          advice.detachedHead false && git checkout {{event.head.sha}} && npm
+          install . && npm test
     metadata:
-      name: dummy
-      description: dummy task to validate tc-github staging
+      name: ''
+      description: ''
       owner: '{{ event.head.user.email }}'
       source: '{{ event.head.repo.url }}'
+access: collaborators
