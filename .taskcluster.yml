@@ -23,7 +23,7 @@ tasks:
       metadata:
         name: ''
         description: ''
-        owner: '${event.pusher.name}@users.noreply.github.com'
+        owner: '${event.sender.login}@users.noreply.github.com'
         source: ${event.repository.url}
 
 
