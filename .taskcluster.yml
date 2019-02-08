@@ -5,8 +5,6 @@ tasks:
     $match:
       'tasks_for == "github-pull-request" && event["action"] in ["opened", "reopened", "synchronize"]':
         taskId: {$eval: as_slugid("pr_task")}
-        provisionerId: aws-provisioner-v1
-        workerType: github-worker
         scopes:
           - secrets:get:project/taskcluster/testing/taskcluster-github
     payload:
