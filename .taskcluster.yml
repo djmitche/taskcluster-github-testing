@@ -1,4 +1,6 @@
 version: 1
+policy:
+  pullRequests: public
 tasks:
   - provisionerId: aws-provisioner-v1
     workerType: github-worker
@@ -24,4 +26,3 @@ tasks:
       description: ''
       owner: '{{ event.head.user.email }}'
       source: '{{ event.head.repo.url }}'
-access: collaborators
