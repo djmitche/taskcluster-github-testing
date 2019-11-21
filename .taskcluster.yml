@@ -27,7 +27,7 @@ tasks:
           name: TaskNameUserInput
           description: TaskDescriptionUserInput
           owner: emailUserInput
-          source: {$repository}
+          source: {$$repository}
         payload:
           maxRunTime: 3600
           image: node
