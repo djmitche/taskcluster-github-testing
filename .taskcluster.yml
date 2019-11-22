@@ -26,8 +26,8 @@ tasks:
         metadata:
           name: TaskNameUserInput
           description: TaskDescriptionUserInput
-          owner: emailUserInput
-          source: {$repository}
+          owner: email@UserInput.com
+          source: {$$repository}
         payload:
           maxRunTime: 3600
           image: node
@@ -39,3 +39,4 @@ tasks:
               git clone {$clone_url} repo && cd repo && git config
               advice.detachedHead false && git checkout {$head_rev} && npm
               install . && npm test
+
