@@ -19,7 +19,7 @@ tasks:
   in:
     $if: 'tasks_for in ["github-pull-request", "github-push"]'
     then:
-      - provisionerId: proj-misc
+      - provisionerId: proj-taskcluster
         workerType: ci
         created: {$fromNow: ''}
         deadline: {$fromNow: '3 hours'}
