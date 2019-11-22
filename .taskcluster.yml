@@ -26,7 +26,7 @@ tasks:
         metadata:
           name: TaskNameUserInput
           description: TaskDescriptionUserInput
-          owner: emailUserInput
+          owner: email@UserInput.com
           source: {$$repository}
         payload:
           maxRunTime: 3600
