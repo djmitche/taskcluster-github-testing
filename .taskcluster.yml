@@ -21,6 +21,7 @@ tasks:
     then:
       - provisionerId: proj-taskcluster
         workerType: ci
+        deadline: {$fromNow: '3 hours'}
         metadata:
           name: TaskNameUserInput
           description: TaskDescriptionUserInput
