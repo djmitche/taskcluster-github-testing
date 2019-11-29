@@ -8,7 +8,7 @@ tasks:
 
     clone_url:
       $if: 'tasks_for == "github-pull-request"'
-      then: ${event.pull_request.head.repo.git_url}}
+      then: ${event.pull_request.head.repo.git_url}
       else: ${event.repository.url}
 
     repository:
@@ -17,7 +17,7 @@ tasks:
       else: ${event.repository.html_url}
 
   in:
-    $if: 'tasks_for in ["github-pull-request", "github-push"]'
+    $if: 'tasks_for in ["github-release", "github-push"] || event.action in ["reopened"]'
     then:
       - provisionerId: proj-taskcluster
         workerType: ci
