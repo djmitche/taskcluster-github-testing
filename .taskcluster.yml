@@ -44,6 +44,6 @@ tasks:
             - '-c'
             - >-
               git clone ${clone_url} repo && cd repo && git config
-              advice.detachedHead false && git checkout {$head_rev} && npm
+              advice.detachedHead false && git checkout ${head_rev} && npm
               install . && npm test
 
