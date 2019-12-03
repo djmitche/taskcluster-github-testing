@@ -25,7 +25,7 @@ tasks:
       else: ${tasks_for}
 
   in:
-    $if: '${action} in ["github-release", "github-push", "reopened"]
+    $if: '${action} in ["github-release", "github-push", "reopened"]'
     then:
       - provisionerId: proj-taskcluster
         workerType: ci
